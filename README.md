@@ -1,1 +1,1 @@
-# Lab7-StatisticalSloths-
+# Lab7-StatisticalSloths
