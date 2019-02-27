@@ -26,5 +26,5 @@ power <- read.table("household_power_consumption.txt", sep=";", header=T, na.str
 ```
 * Madeline's Question:
 * Katie's Question: How does energy in the kitchen (sub metering no.1) vary by month in the year of 2009?
-* Kevin's Question:
+* Kevin's Question: How does the energy consumption in the heating and cooling systems (sub metering 3) change according to the time of year?
 * Zandy's Question:
