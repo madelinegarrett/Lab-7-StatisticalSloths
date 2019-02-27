@@ -19,5 +19,8 @@ dataf <- read.table("household_power_consumption 3.txt", header = TRUE, sep = ";
 dataf
 str(data)
 
+power <- read.table("household_power_consumption.txt", sep=";", header=T, na.strings=c("NA", "", "?"), stringsAsFactors = FALSE) %>%
+  separate(Time, into = c("Hour", "Minute", "Second"), sep = ":")
+
 
 ```
