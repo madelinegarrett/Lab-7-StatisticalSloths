@@ -54,4 +54,4 @@ ggplot(data = month) +
   geom_bar(stat = "identity", mapping = aes(Month, total, fill=Month))
 ```
 
-* Zandy's Question:
+* Zandy's Question: How much more or the much less power is consumed between the different seasons in a year?
