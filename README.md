@@ -54,4 +54,4 @@ ggplot(data = month) +
   geom_bar(stat = "identity", mapping = aes(Month, total, fill=Month))
 ```
 
-* Zandy's Question: How much more or the much less power is consumed between the different seasons in a year and does that posiible extra consumption or less consumption lead to wasted power and or money?
+* Zandy's Question: How much more or how much less power is consumed between the different seasons in a year and does that posiible extra consumption or less consumption lead to wasted power and or money?
