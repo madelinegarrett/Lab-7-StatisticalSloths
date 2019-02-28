@@ -31,8 +31,7 @@ power <- read.table("household_power_consumption.txt", sep=";", header=T, na.str
 power <- read.table("household_power_consumption.txt", sep=";", header=T, na.strings=c("NA", "", "?"), stringsAsFactors = FALSE) %>%
   separate(Time, into = c("Hour", "Minute", "Second"), sep = ":") %>%
   separate(Date, into = c("Day", "Month", "Year"), sep = "/")
-as_tibble(power)
-
+  
 season <- power%>%
   mutate(season=case_when((Month == 1 | Month == 2 | Month == 3)~"Winter", (Month == 4 | Month == 5 | Month == 6)~"Spring", (Month == 7 | Month == 8 | Month == 9)~"Summer", (Month == 10 | Month == 11 | Month == 12)~"Fall")) %>%
   filter(Sub_metering_3>0) %>%
