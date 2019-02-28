@@ -27,4 +27,32 @@ power <- read.table("household_power_consumption.txt", sep=";", header=T, na.str
 * Madeline's Question:
 * Katie's Question: How does energy in the kitchen (sub metering no.1) vary by month in the year of 2009?
 * Kevin's Question: How does the energy consumption in the heating and cooling systems (sub metering 3) change according to the time of year?
+```{r}
+power <- read.table("household_power_consumption.txt", sep=";", header=T, na.strings=c("NA", "", "?"), stringsAsFactors = FALSE) %>%
+  separate(Time, into = c("Hour", "Minute", "Second"), sep = ":") %>%
+  separate(Date, into = c("Day", "Month", "Year"), sep = "/")
+as_tibble(power)
+
+season <- power%>%
+  mutate(season=case_when((Month == 1 | Month == 2 | Month == 3)~"Winter", (Month == 4 | Month == 5 | Month == 6)~"Spring", (Month == 7 | Month == 8 | Month == 9)~"Summer", (Month == 10 | Month == 11 | Month == 12)~"Fall")) %>%
+  filter(Sub_metering_3>0) %>%
+  group_by(season) %>%
+  mutate(total=sum(Sub_metering_3)) %>%
+  distinct(total)
+
+options(scipen=500)
+ggplot(data = season) + 
+  geom_bar(stat = "identity", mapping = aes(season, total, fill=season)) +
+  theme(legend.position = "none")
+
+month <- power %>%
+  filter(Sub_metering_3>0) %>%
+  group_by(Month) %>%
+  mutate(total=sum(Sub_metering_3)) %>%
+  distinct(total)
+
+ggplot(data = month) + 
+  geom_bar(stat = "identity", mapping = aes(Month, total, fill=Month))
+```
+
 * Zandy's Question:
