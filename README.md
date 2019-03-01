@@ -27,13 +27,13 @@ power <- read.table("household_power_consumption.txt", sep=";", header=T, na.str
 ### Madeline's Question:
 ### Katie's Question: How does energy in the kitchen (sub metering no.1) vary by month in the year of 2009?
 ### Kevin's Question: How does the energy consumption in the heating and cooling systems (sub metering 3) change according to the time of year?
-Answer: Of the four seasons, winter saw the highest level of energy consumption put towards heating and cooling, while summer had the lowest level.
-* Energy Usage: 
+Answer: Of the four seasons, winter saw the highest level of energy consumption put towards heating and cooling, while summer had the lowest level. I found this by adding the values from the Sub_metering_3 column, the one about heating and cooling energy usage, from each season. I used the values from Jan, Feb, and Mar for winter, Apr, May, and Jun for spring, Jul, Aug, and Sept for summer, and Oct, Nov, and Dec for fall.
+
+Results for Energy Usage: 
 * Winter - 3824424
 * Spring - 3370710
 * Summer - 2485316
 * Fall - 3554717
-
 
 ```{r}
 power <- read.table("household_power_consumption.txt", sep=";", header=T, na.strings=c("NA", "", "?"), stringsAsFactors = FALSE) %>%
@@ -66,5 +66,8 @@ ggplot(data = month) +
   theme(legend.position = "bottom") +
   labs(title = "Energy Consumption on Temp by Month", x = "Month", y = "Energy")
 ```
+* This question is interesting because it allows you to see what time of year you use the most energy for heating and cooling your home. This can be helpful because it can show you when you spend the most on heating and cooling.
+
+* One of the data analysis techniques I used was the 
 
 ### Zandy's Question: How much more or how much less power is consumed between the different seasons in a year and does that posiible extra consumption or less consumption lead to wasted power and or money?
