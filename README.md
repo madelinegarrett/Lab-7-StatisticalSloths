@@ -106,6 +106,7 @@ ggplot(data = month) +
 * One of the data analysis techniques I used was the separate function. I used this to separate the date from one column with the day, month, and year all included to three columns, one for each value. I then used mutate to split the months and their values into the seasons using the technique I described above in my answer. Then I grouped by the season and mutated a new column that showed the total usage per season. I did much of the same to find the values per month only I did not mutate a column for season. I used bar graphs to display my results visually. I used the fill to change the color of the bar for each season/month and changed the plot and axes titles to more clearly display what they represent. For the season graph, I hid the legend as it was redundant. For the month graph, I removed the x axis ticks and text and moved the legend to the bottom and changed the legend labels to the corresponding months.
 
 ### Zandy's Question: How much more or how much less power is consumed between the different seasons in a year and does that posiible extra consumption or less consumption lead to wasted power and or money?
+Answwer: This household in France was very efficient in their energy consumption. While a typical household wastes about 30% of the energy they use, this household uses 35.4% less energy than a typical household and so yearly saves about $902 on their energy consumption which is far less than a typical household.
 ```{r}
 power <- read.table("file:///C:/Users/zandy/Downloads/household_power_consumption/household_power_consumption.txt", sep=";", header=T, na.strings=c("NA", "", "?"), stringsAsFactors = FALSE) %>%
   separate(Time, into = c("Hour", "Minute", "Second"), sep = ":") %>%
@@ -117,4 +118,19 @@ season <- power %>%
   group_by(season) %>%
   mutate(average=mean(Global_active_power)) %>%
   distinct(average)
+
+ggplot(data = season) +
+  geom_bar(stat = "identity", mapping = aes(x = season, y = average, fill =as.factor(season))) +
+  labs(tile = "Average Energy consumption in a minute(in kilowatts)", x = "season", y = "Average")
+
+
+season_total <- power %>%
+  mutate(season=case_when((Month == 12 | Month == 1 | Month == 2)~"Winter", (Month == 3 |     Month == 4 | Month == 5)~"Spring", (Month == 6 | Month == 7 | Month == 8)~"Summer", (Month   == 9 | Month == 10 | Month == 11)~"Fall")) %>%
+  filter(Global_active_power>0) %>%
+  group_by(season) %>%
+  mutate(total=sum(Global_active_power)) %>%
+  distinct(total)
+
   ```
+* Why this question is important: This question is imortant because the answer to this question can help people to either become more efficient with their energy consumption and cut back or to cut back on energy consumption to save money.
+* What I did: I used the seperate function to determine different time frames by splitting time into years, months, days, hours, minutes, and seconds. I used the mutate function to split the months into seasons with Winter being months 12, 1,2: Spring being months 3,4,5: Summer being months 6,7,8: and Fall being months 9,10,11. I then grouped the seasons together and determined the average and total energy consumption per season and added the total energy consumption up per season and divided by 4  to get a total yearly average energy consumption. I used a bar graph of average energy consumption per minutes in kilowatts per season to visually depict my data with the colors being connected to a different season and labels and a tile to more clearly show what each axis represents and what the graph represents. I finally used statistics to determine how much more or how much less energy was used in the different seasons and used some outside information to determine a typical house's energy consumption and expenditure to determine how efficient this house was with consuming energy.
