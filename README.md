@@ -29,10 +29,10 @@ power <- read.table("household_power_consumption.txt", sep=";", header=T, na.str
 ### Kevin's Question: How does the energy consumption in the heating and cooling systems (sub metering 3) change according to the time of year?
 Answer: Of the four seasons, winter saw the highest level of energy consumption put towards heating and cooling, while summer had the lowest level.
 * Energy Usage: 
-** Winter - 3824424
-** Spring - 3370710
-** Summer - 2485316
-** Fall - 3554717
+* Winter - 3824424
+* Spring - 3370710
+* Summer - 2485316
+* Fall - 3554717
 
 
 ```{r}
