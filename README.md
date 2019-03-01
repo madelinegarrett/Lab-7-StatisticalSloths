@@ -26,6 +26,41 @@ power <- read.table("household_power_consumption.txt", sep=";", header=T, na.str
 ```
 ### Madeline's Question:
 ### Katie's Question: How does energy in the kitchen (sub metering no.1) vary by month in the year of 2009?
+Answer: There does not seem to be a strict pattern month by month. However, January has the highest amount of usage for the year of 2009. The lowest amount of usage in the kitchen for this year is in July. I created a data set using filter and mutate for Sub_metering_1 in the year of 2009 to create a graph and determine which month had the highest usage and which had the lowest.
+Results for Monthly Usage in the Kitchen in 2009:
+* January: 5143
+* February: 3376
+* March: 4506
+* April: 3897
+* May: 3514
+* June: 3025
+* July: 1763
+* August: 2996
+* September: 4502
+* October: 4168
+* November: 4215
+* December: 3864
+```{r}
+
+power <- read.table("household_power_consumption.txt", sep=";", header=T, na.strings=c("NA", "", "?"), stringsAsFactors = FALSE) %>%
+  separate(Date, into = c("Day", "Month", "Year"), sep = "/", convert = TRUE)
+
+power
+```
+```{r}
+year <- power %>%
+  filter(Sub_metering_1>0) %>%
+  filter(Year == 2009) %>%
+  mutate(total = sum(Sub_metering_3))
+year
+```
+```{r}
+ggplot(data = year)+
+  geom_bar(mapping=aes(x=as.factor(Month), fill=Sub_metering_1), color = "blue")+
+  labs(title = "Energy Consumption in the Kitchen by Month in 2009", x = "Month", y = "Voltage")
+```
+* I found this question interesting because I believed kitchen energy consumption would vary slightly. However, I am suprised that the usage has no trend from month to month.
+* In order to conduct my exploratory data analysis I began by reading the descriptions of each variable in the data set. I then decided to use the seperate function in order to seperate the date into three new columns: Month, Day and Year. I then decided that it would be interesting to see if energy usage in any of the Sub_metering zones varied by month. I decided to look into energy usage by month in the kitchen for the year 2009. I chose 2009 mainly because it was 10 years ago and I was curious. I created a data set to reflect the year of 2009 and used mutate to create a total usage column. For the plot I used a geom_bar function that shows the energy consumption by month in the kitchen for the year of 2009. I added a title as well as changing the names of the x and y axis. 
 ### Kevin's Question: How does the energy consumption in the heating and cooling systems (sub metering 3) change according to the time of year?
 Answer: Of the four seasons, winter saw the highest level of energy consumption put towards heating and cooling, while summer had the lowest level. I found this by adding the values from the Sub_metering_3 column, the one about heating and cooling energy usage, from each season. I used the values from Jan, Feb, and Mar for winter, Apr, May, and Jun for spring, Jul, Aug, and Sept for summer, and Oct, Nov, and Dec for fall. I also found and included the results for energy usage by month to add support to my findings.
 
