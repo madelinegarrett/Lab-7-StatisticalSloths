@@ -51,7 +51,7 @@ power
 year <- power %>%
   filter(Sub_metering_1>0) %>%
   filter(Year == 2009) %>%
-  mutate(total = sum(Sub_metering_3))
+  mutate(total = sum(Sub_metering_1))
 year
 ```
 ```{r}
