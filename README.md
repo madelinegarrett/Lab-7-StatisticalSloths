@@ -124,7 +124,7 @@ Magnitude of energy consumed in Winter vs other seasons:
 * Winter vs. Spring = 1.4176230/1.1031940 = 1.285 = 128.5% higher
 * Winter vs. Summer = 1.4176230/0.7266815 = 1.95 = 195% higher
 * Winter vs. Fall = 1.4176230/1.1346098 = 1.249 = 124.9% higher
-
+Other Statistics:
 * total typical French household energy consumption yearly = 14,520 KW/h * 60 = 871,200
 * households yearly consumption = (700,181+578,245.7+376,631.8+581,966.3)/4 = 559,256.2
 * percentage of yearly consumption = 559,256.2/871,200 = 0.642 = 64.2%
