@@ -106,7 +106,7 @@ ggplot(data = month) +
 * One of the data analysis techniques I used was the separate function. I used this to separate the date from one column with the day, month, and year all included to three columns, one for each value. I then used mutate to split the months and their values into the seasons using the technique I described above in my answer. Then I grouped by the season and mutated a new column that showed the total usage per season. I did much of the same to find the values per month only I did not mutate a column for season. I used bar graphs to display my results visually. I used the fill to change the color of the bar for each season/month and changed the plot and axes titles to more clearly display what they represent. For the season graph, I hid the legend as it was redundant. For the month graph, I removed the x axis ticks and text and moved the legend to the bottom and changed the legend labels to the corresponding months.
 
 ### Zandy's Question: How much more or how much less power is consumed between the different seasons in a year and does that posiible extra consumption or less consumption lead to wasted power and or money?
-Answer: This household in France was very efficient in their energy consumption. While a typical household wastes about 30% of the energy they use, this household uses 35.8% less energy than a typical household and so yearly saves about $903 on their energy consumption which is far less than a typical household.
+Answer: This household in France was very efficient in their energy consumption. While a typical household wastes about 30% of the energy they use, this household uses 64.2% of the energy energy of a typical household and so yearly saves about $903 on their energy consumption which is far less than a typical household.
 
 Average energy consumed per season in kilowatts per minute:
 * Winter = 1.4176230
@@ -125,11 +125,11 @@ Magnitude of energy consumed in Winter vs other seasons:
 * Winter vs. Summer = 1.4176230/0.7266815 = 1.95 = 195% higher
 * Winter vs. Fall = 1.4176230/1.1346098 = 1.249 = 124.9% higher
 
-total typical French household energy consumption yearly = 14,520 KW/h * 60 = 871,200
-households yearly consumption = (700,181+578,245.7+376,631.8+581,966.3)/4 = 559,256.2
-percentage of yearly consumption = 559,256.2/871,200 = 0.642 = 64.2%
-french yearly household expenditure = $210.27 per month * 12 = $2523.24
-households yearly expenditure = $1620
+* total typical French household energy consumption yearly = 14,520 KW/h * 60 = 871,200
+* households yearly consumption = (700,181+578,245.7+376,631.8+581,966.3)/4 = 559,256.2
+* percentage of yearly consumption = 559,256.2/871,200 = 0.642 = 64.2%
+* french yearly household expenditure = $210.27 per month * 12 = $2523.24
+* households yearly expenditure = $1620
 
 ```{r}
 power <- read.table("file:///C:/Users/zandy/Downloads/household_power_consumption/household_power_consumption.txt", sep=";", header=T, na.strings=c("NA", "", "?"), stringsAsFactors = FALSE) %>%
