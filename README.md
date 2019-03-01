@@ -106,7 +106,25 @@ ggplot(data = month) +
 * One of the data analysis techniques I used was the separate function. I used this to separate the date from one column with the day, month, and year all included to three columns, one for each value. I then used mutate to split the months and their values into the seasons using the technique I described above in my answer. Then I grouped by the season and mutated a new column that showed the total usage per season. I did much of the same to find the values per month only I did not mutate a column for season. I used bar graphs to display my results visually. I used the fill to change the color of the bar for each season/month and changed the plot and axes titles to more clearly display what they represent. For the season graph, I hid the legend as it was redundant. For the month graph, I removed the x axis ticks and text and moved the legend to the bottom and changed the legend labels to the corresponding months.
 
 ### Zandy's Question: How much more or how much less power is consumed between the different seasons in a year and does that posiible extra consumption or less consumption lead to wasted power and or money?
-Answwer: This household in France was very efficient in their energy consumption. While a typical household wastes about 30% of the energy they use, this household uses 35.4% less energy than a typical household and so yearly saves about $902 on their energy consumption which is far less than a typical household.
+Answer: This household in France was very efficient in their energy consumption. While a typical household wastes about 30% of the energy they use, this household uses 35.4% less energy than a typical household and so yearly saves about $902 on their energy consumption which is far less than a typical household.
+
+Average energy consumed per season in kilowatts per minute:
+* Winter = 1.4176230
+* Spring = 1.1031940
+* Summer = 0.7266815
+* Fall = 1.1346098
+
+Total energy consumed per season and yearly in kilowatts per minute:
+* Winter = 700,181
+* Spring = 578,245.7
+* Summer = 376,631.8
+* Fall = 581,966.3
+
+Magnitude of energy consumed in Winter vs other seasons:
+* Winter vs. Spring = 1.4176230/1.1031940 = 1.285 = 128.5% higher
+* Winter vs. Summer = 1.4176230/0.7266815 = 1.95 = 195% higher
+* Winter vs. Fall = 1.4176230/1.1346098 = 1.249 = 124.9% higher
+
 ```{r}
 power <- read.table("file:///C:/Users/zandy/Downloads/household_power_consumption/household_power_consumption.txt", sep=";", header=T, na.strings=c("NA", "", "?"), stringsAsFactors = FALSE) %>%
   separate(Time, into = c("Hour", "Minute", "Second"), sep = ":") %>%
