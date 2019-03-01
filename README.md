@@ -41,8 +41,9 @@ season <- power%>%
 
 options(scipen=500)
 ggplot(data = season) + 
-  geom_bar(stat = "identity", mapping = aes(season, total, fill=season)) +
-  theme(legend.position = "none")
+  geom_bar(stat = "identity", mapping = aes(season, total, fill=as.factor(season))) +
+  theme(legend.position = "none") +
+  labs(title = "Energy Consumption on Temp by Season", x = "Season", y = "Energy")
 
 month <- power %>%
   filter(Sub_metering_3>0) %>%
@@ -51,7 +52,11 @@ month <- power %>%
   distinct(total)
 
 ggplot(data = month) + 
-  geom_bar(stat = "identity", mapping = aes(Month, total, fill=Month))
+  geom_bar(stat = "identity", mapping = aes(Month, total, fill=as.factor(Month))) + 
+  scale_fill_discrete(name = "Month", labels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")) + 
+  theme(axis.text.x=element_blank(), axis.ticks.x=element_blank()) + 
+  theme(legend.position = "bottom") +
+  labs(title = "Energy Consumption on Temp by Month", x = "Month", y = "Energy")
 ```
 
 * Zandy's Question: How much more or how much less power is consumed between the different seasons in a year and does that posiible extra consumption or less consumption lead to wasted power and or money?
