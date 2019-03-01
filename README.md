@@ -71,3 +71,15 @@ ggplot(data = month) +
 * One of the data analysis techniques I used was the separate function. I used this to separate the date from one column with the day, month, and year all included to three columns, one for each value. I then used mutate to split the months and their values into the seasons using the technique I described above in my answer. Then I grouped by the season and mutated a new column that showed the total usage per season. I did much of the same to find the values per month only I did not mutate a column for season. I used bar graphs to display my results visually. I used the fill to change the color of the bar for each season/month and changed the plot and axes titles to more clearly display what they represent. For the season graph, I hid the legend as it was redundant. For the month graph, I removed the x axis ticks and text and moved the legend to the bottom and changed the legend labels to the corresponding months.
 
 ### Zandy's Question: How much more or how much less power is consumed between the different seasons in a year and does that posiible extra consumption or less consumption lead to wasted power and or money?
+```{r}
+power <- read.table("file:///C:/Users/zandy/Downloads/household_power_consumption/household_power_consumption.txt", sep=";", header=T, na.strings=c("NA", "", "?"), stringsAsFactors = FALSE) %>%
+  separate(Time, into = c("Hour", "Minute", "Second"), sep = ":") %>%
+  separate(Date, into = c("Day", "Month", "Year"), sep = "/", convert = TRUE)
+  
+season <- power %>%
+  mutate(season=case_when((Month == 12 | Month == 1 | Month == 2)~"Winter", (Month == 3 |     Month == 4 | Month == 5)~"Spring", (Month == 6 | Month == 7 | Month == 8)~"Summer", (Month   == 9 | Month == 10 | Month == 11)~"Fall")) %>%
+  filter(Global_active_power>0) %>%
+  group_by(season) %>%
+  mutate(average=mean(Global_active_power)) %>%
+  distinct(average)
+  ```
